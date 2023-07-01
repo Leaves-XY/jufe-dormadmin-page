@@ -56,8 +56,8 @@
       </el-form-item>
       <el-form-item prop="remark">
         <el-select v-model="registerForm.remark" placeholder="请选择角色" clearable>
-          <el-option value="管理员" label="管理员"></el-option>
-          <el-option value="超级管理员" label="超级管理员"></el-option>
+          <el-option value="寝室管理员" label="寝室管理员"></el-option>
+          <el-option value="系统管理员" label="系统管理员"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item prop="code">

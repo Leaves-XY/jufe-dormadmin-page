@@ -89,6 +89,23 @@
         width="120"
       >
       </el-table-column>
+
+      <el-table-column
+        align="center"
+        prop="major.name"
+        label="专业"
+        width="120"
+      >
+      </el-table-column>
+
+      <el-table-column
+        align="center"
+        prop="major.depart.name"
+        label="学院"
+        width="120"
+      >
+      </el-table-column>
+
       <el-table-column
         align="center"
         label="操作"
@@ -109,8 +126,8 @@
           >删除</el-button>
         </template>
       </el-table-column>
-
     </el-table>
+
     <el-pagination
       style="margin-top:20px;"
       @size-change="handleSizeChange"
@@ -173,6 +190,9 @@
             </el-option>
           </el-select>
         </el-form-item>
+        <el-form-item label="学院/专业" prop="majorId">
+          <el-cascader v-model="student.majorId" :options="departAndMajorList" :props="{ checkStrictly: true, label: 'label', value: 'value', children: 'children' }" clearable placeholder="请选择学院和专业"></el-cascader>
+        </el-form-item>
       </el-form>
       <span
         slot="footer"
@@ -219,6 +239,20 @@ export default {
           this.total = resp.total;
         }
       });
+      this.getRequest("/api/depart_and_major/list").then(resp => {
+        if (resp) {
+          const departOptions = resp.departs.map(depart => ({
+            value: depart.id,
+            label: depart.name,
+            children: resp[`major_of_depart_${depart.id}`].map(major => ({
+              value: major.id,
+              label: major.name
+            }))
+          }));
+          this.departAndMajorList = [...departOptions];
+          console.log(JSON.stringify(this.departAndMajorList, null, 2));  // 使用 JSON.stringify 将数据转换为字符串
+        }
+      });
     },
     initDorm() {
       this.getRequest("/api/dorm/all").then(resp => {
@@ -250,7 +284,9 @@ export default {
       if (this.student.id) {
         this.$refs["studentForm"].validate(valid => {
           if (valid) {
-            this.postRequest("/api/student/add", this.student).then(resp => {
+            // 获取 majorId 数组的最后一个值
+            const selectedMajorId = this.student.majorId[this.student.majorId.length - 1];
+            this.postRequest("/api/student/add", { ...this.student, majorId: selectedMajorId }).then(resp => {
               if (resp) {
                 this.dialogVisible = false;
                 this.initStudent();
@@ -261,7 +297,9 @@ export default {
       } else {
         this.$refs["studentForm"].validate(valid => {
           if (valid) {
-            this.postRequest("/api/student/add", this.student).then(resp => {
+            // 获取 majorId 数组的最后一个值
+            const selectedMajorId = this.student.majorId[this.student.majorId.length - 1];
+            this.postRequest("/api/student/add", { ...this.student, majorId: selectedMajorId }).then(resp => {
               if (resp) {
                 this.dialogVisible = false;
                 this.initStudent();
@@ -336,10 +374,12 @@ export default {
         studentNo: "",
         studentName: "",
         sex: 1,
-        dormId: 0
+        dormId: 0,
+        majorId: []  // 这个用于存储级联选择器的值
       },
       studentList: [],
       dormList: [],
+      departAndMajorList: [],
       pageSizes: [5, 10, 25, 50],
       pageSize: 5,
       total: 0,
@@ -356,7 +396,8 @@ export default {
           { required: true, message: "请输入姓名", trigger: "blur" },
           { min: 2, max: 10, message: "长度在 2 到 10 个字符", trigger: "blur" }
         ],
-        sex: [{ required: true, message: "请选择性别", trigger: "blur" }]
+        sex: [{ required: true, message: "请选择性别", trigger: "blur" }],
+        majorId: [{ required: true, message: "请选择学院和专业", trigger: "change" }]  // 新增的验证规则
       }
     };
   }
