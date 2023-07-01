@@ -46,6 +46,10 @@ export const formatRoutes = (routes) => {
                     require(['../views/user/' + component + '.vue'], resolve);
                 } else if (component.startsWith("System")) {
                     require(['../views/system/' + component + '.vue'], resolve);
+                }else if(component.startsWith("Notice")){
+                  require(['../views/notice/' + component + '.vue'], resolve);
+                }else if(component.startsWith("Repair")){
+                  require(['../views/repair/' + component + '.vue'], resolve);
                 }
             }
         }

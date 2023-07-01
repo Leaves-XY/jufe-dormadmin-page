@@ -1,6 +1,6 @@
 <template>
   <el-container class="el-main">
-    <el-header class="homeHeader " style="background-color: rgb(193,38,44)">
+    <el-header class="homeHeader " style="background-color: rgb(193,38,44) ;">
       <div>
         <img src="../assets/logo.png"
         style="height: 50px ;width: 50px"
@@ -120,11 +120,13 @@ export default {
 
 
 .homeRouterView {
+  background-color: white;
   margin-top: 10px;
 
 }
 .el-main{
 
+  /*background-image: url("http://lib.jxufe.cn/sites/all/themes/jxcdlib/images/bg-resource.jpg");*/
   min-height: 100vh; /* 设置最小高度为视口高度，确保占满整个屏幕 */
 }
 
