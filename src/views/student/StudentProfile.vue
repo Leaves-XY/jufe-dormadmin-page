@@ -250,7 +250,7 @@ export default {
             }))
           }));
           this.departAndMajorList = [...departOptions];
-          console.log(JSON.stringify(this.departAndMajorList, null, 2));  // 使用 JSON.stringify 将数据转换为字符串
+          // console.log(JSON.stringify(this.departAndMajorList, null, 2));  // 使用 JSON.stringify 将数据转换为字符串
         }
       });
     },

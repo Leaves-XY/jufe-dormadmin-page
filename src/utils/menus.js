@@ -50,7 +50,12 @@ export const formatRoutes = (routes) => {
                   require(['../views/notice/' + component + '.vue'], resolve);
                 }else if(component.startsWith("Repair")){
                   require(['../views/repair/' + component + '.vue'], resolve);
+                }else if(component.startsWith("Feedback")){
+                  require(['../views/feedback/' + component + '.vue'], resolve);
+                }else if(component.startsWith("Outsider")){
+                  require(['../views/outsider/'+component+'.vue'],resolve);
                 }
+
             }
         }
         fmRoutes.push(fmRouter);

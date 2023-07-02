@@ -4,13 +4,13 @@
     <el-main>
       <div class="card-container">
         <el-card
-          v-for="(repair, index) in repiars"
+          v-for="(feedback, index) in feedbacks"
           :key="index"
           class="box-card"
         >
-          <div class="card-text">报修: {{repair.title}}</div>
-          <div class="card-text">描述: {{repair.description}}</div>
-          <div class="card-text">报修时间: {{repair.createAt}}</div>
+          <div class="card-text">反馈学生: {{feedback.stuName}}</div>
+          <div class="card-text">描述: {{feedback.reason}}</div>
+          <div class="card-text">反馈时间: {{feedback.createAt}}</div>
         </el-card>
       </div>
     </el-main>
@@ -21,21 +21,21 @@
 import { getRequest } from "../../api/api";
 
 export default {
-  name: "RepairInfo",
+  name: "FeedbackInfo",
   data() {
     return {
-      repiars: []
+      feedbacks: []
     };
   },
   mounted() {
-    this.initRepairs();
+    this.initFeedbacks();
   },
   methods: {
-    initRepairs() {
-      getRequest("/api/repair/list")
+    initFeedbacks() {
+      getRequest("/api/feedback/list")
         .then(resp => {
-          this.repiars = resp;
-          console.log(this.repiars);
+          this.feedbacks = resp;
+          console.log(this.feedbacks);
         })
         .catch(error => console.error("Error:", error));
     }
