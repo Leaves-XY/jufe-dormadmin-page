@@ -1,11 +1,17 @@
 <template>
   <el-container class="el-main">
     <el-header class="homeHeader " style="background-color: rgb(193,38,44) ;">
+
+      <div style="font-size: 16px;font-weight: bold ;color: white">
+        {{currentDate}}
+      </div>
+
       <div>
         <img src="../assets/logo.png"
-        style="height: 50px ;width: 50px"
+             style="height: 50px ;width: 50px"
         >
       </div>
+
       <div class="title">江西财经大学宿舍管理系统</div>
       <div>
         <el-dropdown class="profile" @command="commandHandler">
@@ -67,8 +73,15 @@
           系统主页
         </div>
         <router-view class="homeRouterView" />
+
+
       </el-main>
+      <template>
+
+
+      </template>
     </el-container>
+
   </el-container>
 </template>
 
@@ -76,9 +89,15 @@
 export default {
   name: "Home",
   data() {
+
     return {
+      currentDate: "", // 当前日期
       // user: JSON.parse(window.sessionStorage.getItem("user"))
     };
+  },
+  mounted() {
+    this.getCurrentDate(); // 页面加载时获取当前日期
+    this.startClock(); // 开始实时更新日期
   },
   computed: {
     routes() {
@@ -89,6 +108,30 @@ export default {
     }
   },
   methods: {
+    getCurrentDate() {
+      const date = new Date();
+      this.currentDate = this.formatDate(date);
+    },
+    formatDate(date) {
+      // 格式化日期为 "yyyy-MM-dd HH:mm:ss" 格式
+      const year = date.getFullYear();
+      const month = this.padZero(date.getMonth() + 1);
+      const day = this.padZero(date.getDate());
+      const hours = this.padZero(date.getHours());
+      const minutes = this.padZero(date.getMinutes());
+      const seconds = this.padZero(date.getSeconds());
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    },
+    padZero(value) {
+      // 补零
+      return value < 10 ? `0${value}` : value;
+    },
+    startClock() {
+      // 开始实时更新日期
+      setInterval(() => {
+        this.getCurrentDate();
+      }, 1000);
+    },
     commandHandler(cmd) {
       if (cmd == "logout") {
         this.$confirm("此操作将注销登录, 是否继续?", "提示", {
@@ -146,7 +189,21 @@ export default {
   background-color: rgba(223,5,37,0.3); /* 当鼠标悬停在菜单项上时，改变背景色 */
 }
 
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 14px;
+  opacity: 0.75;
+  line-height: 150px;
+  margin: 0;
+}
 
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+
+.el-carousel__item:nth-child(2n+1) {
+  background-color: #d3dce6;
+}
 
 .homeWelcome {
   text-align: center;
