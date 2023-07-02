@@ -105,7 +105,7 @@ export default {
         password: "",
         name: "",
         phone: "",
-        remark: "管理员",
+        remark: "寝室管理员",
         code: ""
       },
       rules: {
