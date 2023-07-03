@@ -2,7 +2,7 @@
     <div class="login" >
         <div class="logo">
           <img
-            src="../assets/logo.png"
+            src="https://leavesxy-web-tlias.oss-cn-hangzhou.aliyuncs.com/logo.png"
             alt=""
             style="margin-top:50px; width: 175px;height: 175px "
           >
@@ -154,7 +154,7 @@ export default {
   align-items: center;
 }
 .login {
-  background-image: url("https://ssl.jxufe.edu.cn/cas/assets/images/default/login-bg-4.jpg");
+  background-image: url("https://leavesxy-web-tlias.oss-cn-hangzhou.aliyuncs.com/login-bg-4.jpg");
   display: flex;
   align-items: center;
   flex-direction: column;

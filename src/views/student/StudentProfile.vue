@@ -14,7 +14,7 @@
     </el-button>
     <div style="display: flex;justify-content: flex-start;align-items: center;">
       <el-input
-        placeholder="请输入学生姓名进行搜索"
+        placeholder="请输入学生学号或姓名进行搜索"
         prefix-icon="el-icon-search"
         clearable
         @clear="initStudent"

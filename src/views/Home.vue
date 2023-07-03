@@ -7,7 +7,7 @@
       </div>
 
       <div>
-        <img src="../assets/logo.png"
+        <img src="https://leavesxy-web-tlias.oss-cn-hangzhou.aliyuncs.com/logo.png"
              style="height: 50px ;width: 50px"
         >
       </div>

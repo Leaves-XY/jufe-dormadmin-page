@@ -176,7 +176,7 @@ export default {
 }
 
 .register {
-  background-image: url("https://ssl.jxufe.edu.cn/cas/assets/images/default/login-bg.jpg");
+  background-image: url("https://leavesxy-web-tlias.oss-cn-hangzhou.aliyuncs.com/login-bg.jpg ");
   display: flex;
   align-items: center;
   flex-direction: column;
