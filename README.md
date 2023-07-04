@@ -1,4 +1,14 @@
-# dorm-admin-page
+# Vue 江西财经大学寝室管理系统前端
+
+[后端地址](https://github.com/Leaves-XY/jufe-dorm-admin)
+
+
+![登录](./login.png)
+
+![注册](./register.png)
+
+![主页](./home.png)
+
 
 > dorm admin page
 
