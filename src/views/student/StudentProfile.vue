@@ -183,11 +183,11 @@
           >
             <el-option
               v-for="dorm in dormList"
+              v-if="dorm.sex === student.sex"
               :key="dorm.id"
-              :label="dorm.name"
+              :label="dorm.remain< 1 ? dorm.name + '（已满）' : dorm.name"
               :value="dorm.id"
-            >
-            </el-option>
+            ></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="学院/专业" prop="majorId">

@@ -8,7 +8,11 @@
           :key="index"
           class="box-card"
         >
-          <div class="card-text">反馈学生: {{feedback.stuName}}</div>
+          <div slot="header" class="clearfix">
+            <span>反馈学生: {{feedback.stuName}}</span>
+            <el-button style="float: right; padding: 3px 0" type="text" @click="deleteFeedback(feedback.id)">已处理/删除</el-button>
+          </div>
+          <div class="card-text"></div>
           <div class="card-text">描述: {{feedback.reason}}</div>
           <div class="card-text">反馈时间: {{feedback.createAt}}</div>
         </el-card>
@@ -18,7 +22,7 @@
 </template>
 
 <script>
-import { getRequest } from "../../api/api";
+import {deleteRequest, getRequest} from "../../api/api";
 
 export default {
   name: "FeedbackInfo",
@@ -38,6 +42,12 @@ export default {
           console.log(this.feedbacks);
         })
         .catch(error => console.error("Error:", error));
+    },
+    deleteFeedback(id){
+      deleteRequest('/api/feedback/del',{id:id})
+        .then(resp=>{
+          this.initFeedbacks();
+        })
     }
   }
 };

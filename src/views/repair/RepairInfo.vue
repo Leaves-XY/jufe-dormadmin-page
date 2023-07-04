@@ -8,7 +8,10 @@
           :key="index"
           class="box-card"
         >
-          <div class="card-text">报修: {{repair.title}}</div>
+          <div slot="header" class="clearfix">
+            <span>报修: {{repair.title}}</span>
+            <el-button style="float: right; padding: 3px 0" type="text" @click="handleDeleteRepair(repair.id)">已处理/删除</el-button>
+          </div>
           <div class="card-text">描述: {{repair.description}}</div>
           <div class="card-text">报修时间: {{repair.createAt}}</div>
         </el-card>
@@ -18,7 +21,7 @@
 </template>
 
 <script>
-import { getRequest } from "../../api/api";
+import {deleteRequest, getRequest} from "../../api/api";
 
 export default {
   name: "RepairInfo",
@@ -38,6 +41,13 @@ export default {
           console.log(this.repiars);
         })
         .catch(error => console.error("Error:", error));
+    },
+    handleDeleteRepair(id){
+      deleteRequest('/api/repair/del',{id:id})
+        .then(response=>{
+          this.initRepairs();
+        })
+        .catch(error => console.error('Error:', error));
     }
   }
 };

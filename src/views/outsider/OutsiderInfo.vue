@@ -8,7 +8,11 @@
           :key="index"
           class="box-card"
         >
-          <div class="card-text">访问的寝室楼: {{outsider.buildName}}</div>
+          <div slot="header" class="clearfix">
+            <span>访问的寝室楼: {{outsider.buildName}}</span>
+            <el-button style="float: right; padding: 3px 0" type="text" @click="handleDeleteOutsider(outsider.id)">已处理/删除</el-button>
+          </div>
+          <div class="card-text"></div>
           <div class="card-text">原因: {{outsider.reason}}</div>
           <div class="card-text">访问时间: {{outsider.createAt}}</div>
         </el-card>
@@ -18,7 +22,7 @@
 </template>
 
 <script>
-import { getRequest } from "../../api/api";
+import {deleteRequest, getRequest} from "../../api/api";
 
 export default {
   name: "OutsiderInfo",
@@ -38,6 +42,13 @@ export default {
           console.log(this.outsiders);
         })
         .catch(error => console.error("Error:", error));
+    },
+    handleDeleteOutsider(id){
+      deleteRequest('/api/outsiders/del',{id:id})
+        .then(response=>{
+          this.initOutsiders();
+        })
+        .catch(error => console.error('Error:', error));
     }
   }
 };
