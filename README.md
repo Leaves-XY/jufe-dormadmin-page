@@ -2,6 +2,14 @@
 
 [后端地址](https://github.com/Leaves-XY/jufe-dorm-admin)
 
+
+![登录](./login.png)
+
+![注册](./register.png)
+
+![主页](./home.png)
+
+
 > dorm admin page
 
 ## Build Setup
